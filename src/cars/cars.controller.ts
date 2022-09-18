@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  ParseUUIDPipe,
   Patch,
   Post,
 } from "@nestjs/common";
@@ -20,8 +21,8 @@ export class CarsController {
   }
 
   @Get(":id") // ruta
-  getCarById(@Param("id", ParseIntPipe) id: number) {
-    console.log({ id: +id });
+  getCarById(@Param("id", new ParseUUIDPipe({ version: "4" })) id: string) {
+    console.log({ id: id });
 
     // throw new Error('Aiudaaa!')
     return {
